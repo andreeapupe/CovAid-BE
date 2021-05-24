@@ -41,4 +41,20 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /**
+     Obtains the appointments of this patient
+     */
+    public function userAppointments()
+    {
+        return $this->hasMany(Appointment::class, 'patient_id');
+    }
+
+    /**
+    Obtains the appointments of this doctor
+     */
+    public function doctorAppointments()
+    {
+        return $this->hasMany(Appointment::class, 'doctor_id');
+    }
 }

@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Role;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 
@@ -14,10 +15,13 @@ class UsersSeeder extends Seeder
      */
     public function run()
     {
-        User::factory()->create([
+        $andreea = User::factory()->create([
             'name' => 'Andreea Pupe',
             'email' => 'andreeapupe@yahoo.com',
-            'password' => bcrypt('secret')
+            'password' => bcrypt('secret'),
+            'role_id' => Role::where('name', 'patient')->first()->id
         ]);
+
+        $user = User::factory()->count(10)->create();
     }
 }
