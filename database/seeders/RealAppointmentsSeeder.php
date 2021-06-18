@@ -31,5 +31,9 @@ class RealAppointmentsSeeder extends Seeder
         $appointments = Appointment::factory()->count(5)->create([
             'patient_id' => User::where('email', 'andreeapupe@yahoo.com')->first()->id
         ]);
+
+        $doctorAppointments = Appointment::factory()->count(5)->create([
+            'doctor_id' => User::where('email', 'johndoe@gmail.com')->first()->id
+        ]);
     }
 }

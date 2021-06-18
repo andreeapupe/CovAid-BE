@@ -8,6 +8,7 @@ use Illuminate\Database\Seeder;
 
 class UsersSeeder extends Seeder
 {
+
     /**
      * Run the database seeds.
      *
@@ -20,6 +21,13 @@ class UsersSeeder extends Seeder
             'email' => 'andreeapupe@yahoo.com',
             'password' => bcrypt('secret'),
             'role_id' => Role::where('name', 'patient')->first()->id
+        ]);
+
+        $john = User::factory()->create([
+            'name' => 'Doctor 1',
+            'email' => 'johndoe@gmail.com',
+            'password' => bcrypt('secret'),
+            'role_id' => Role::where('name', 'doctor')->first()->id
         ]);
 
         $user = User::factory()->count(10)->create();

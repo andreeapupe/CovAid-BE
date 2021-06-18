@@ -2,7 +2,8 @@
 
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\DoctorsController;
-use App\Http\Controllers\UserController;
+use App\Http\Controllers\UserOwnAppsController;
+use App\Http\Controllers\DoctorOwnAppsController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -25,4 +26,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::middleware('auth:sanctum')->get('/doctors', [DoctorsController::class, 'index']);
 
-Route::middleware('auth:sanctum')->get('/appointments', [UserController::class, 'index']);
+Route::middleware('auth:sanctum')->get('/patient/appointments', [UserOwnAppsController::class, 'index']);
+
+Route::middleware('auth:sanctum')->get('/doctor/appointments', [DoctorOwnAppsController::class, 'index']);
