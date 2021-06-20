@@ -16,13 +16,14 @@ class CreateAppointments extends Migration
         Schema::create('appointments', function (Blueprint $table) {
             $table->id();
 
+            //Foreign Key
             $table->unsignedBigInteger('patient_id');
             $table->foreign('patient_id')->references('id')->on('users');
 
+            //Foreign Key
             $table->unsignedBigInteger('doctor_id');
             $table->foreign('doctor_id')->references('id')->on('users');
 
-            //Foreign Key
             $table->boolean('contact');
             $table->string('details');
             $table->timestamps();

@@ -10,14 +10,18 @@ class UserOwnAppsController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function index()
     {
+        if( Auth::user()->role->name === 'doctor' ) {
+            abort(401, 'You are not authorized to access this endpoint.');
+        }
+
         $appointments = Auth::user()->patientAppointments()->get();
 
         return response()->json([
-            'appointments' => $appointments
+            'appointments' => $appointments->load('patient')->load('doctor')
         ]);
     }
 

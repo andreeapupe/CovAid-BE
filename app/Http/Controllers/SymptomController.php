@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Symptom;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
-class DoctorOwnAppsController extends Controller
+class SymptomController extends Controller
 {
+
+
     /**
      * Display a listing of the resource.
      *
@@ -14,16 +16,13 @@ class DoctorOwnAppsController extends Controller
      */
     public function index()
     {
-        if( Auth::user()->role->name === 'patient' ) {
-            abort(401, 'You are not authorized to access this endpoint.');
-        }
-
-        $appointments = Auth::user()->doctorAppointments()->get();
+        $symptoms = Symptom::all();
 
         return response()->json([
-            'appointments' => $appointments
+            'symptoms' => $symptoms
         ]);
     }
+
 
     /**
      * Show the form for creating a new resource.

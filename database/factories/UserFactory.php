@@ -30,7 +30,7 @@ class UserFactory extends Factory
             'age' => $this->faker->numberBetween(18,50),
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
             'remember_token' => Str::random(10),
-            'role_id' => Role::factory()
+            'role_id' => Role::count() > 0 ? Role::all()->random()->id : Role::factory()
         ];
     }
 

@@ -57,4 +57,12 @@ class User extends Authenticatable
     {
         return $this->hasMany(Appointment::class, 'doctor_id');
     }
+
+    /**
+     * Gets the role of this user.
+     */
+    public function role()
+    {
+        return $this->belongsTo(Role::class);
+    }
 }
