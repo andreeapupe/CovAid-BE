@@ -14,7 +14,7 @@ class UserOwnAppsController extends Controller
      */
     public function index()
     {
-        $appointments = Auth::user()->userAppointments()->get();
+        $appointments = Auth::user()->patientAppointments()->get();
 
         return response()->json([
             'appointments' => $appointments

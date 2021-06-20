@@ -43,15 +43,15 @@ class User extends Authenticatable
     ];
 
     /**
-     Obtains the appointments of this patient
+     * Obtains the appointments of this patient
      */
-    public function userAppointments()
+    public function patientAppointments()
     {
         return $this->hasMany(Appointment::class, 'patient_id');
     }
 
     /**
-    Obtains the appointments of this doctor
+     * Obtains the appointments of this doctor
      */
     public function doctorAppointments()
     {

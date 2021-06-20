@@ -30,4 +30,9 @@ class Appointment extends Model
     {
         return $this->belongsToMany(Symptom::class, 'appointment_symptom', 'appointment_id', 'symptom_id');
     }
+
+    
+
+
+
 }

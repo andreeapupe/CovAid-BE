@@ -31,8 +31,8 @@ class AppointmentFactory extends Factory
                 'role_id' => Role::where('name', 'doctor')->first()->id
             ])->id,
             'contact' => $this->faker->numberBetween(0, 1),
-            'details' => $this->faker->text
-
+            'details' => $this->faker->text,
+            'status' => $this->faker->randomElement(['pending', 'approved', 'rejected'])
         ];
     }
 }
