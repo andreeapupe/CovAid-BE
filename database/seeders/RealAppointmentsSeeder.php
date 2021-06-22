@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Appointment;
 use App\Models\Role;
+use App\Models\Symptom;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 
@@ -28,11 +29,15 @@ class RealAppointmentsSeeder extends Seeder
         $patientTwo = User::factory()->create(['role_id' => $patientRole->id]);
 
         // Create appointments
-        $appointments = Appointment::factory()->count(5)->create([
+        $appointments = Appointment::factory()->count(15)->create([
             'patient_id' => User::where('email', 'andreeapupe@yahoo.com')->first()->id
         ]);
 
-        $doctorAppointments = Appointment::factory()->count(5)->create([
+        foreach ($appointments as $appointment) {
+            $appointment->symptoms()->attach(Symptom::all()->random()->id);
+        }
+
+        $doctorAppointments = Appointment::factory()->count(15)->create([
             'doctor_id' => User::where('email', 'johndoe@gmail.com')->first()->id
         ]);
     }

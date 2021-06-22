@@ -21,7 +21,7 @@ class DoctorOwnAppsController extends Controller
         $appointments = Auth::user()->doctorAppointments()->get();
 
         return response()->json([
-            'appointments' => $appointments
+            'appointments' => $appointments->load('patient')->load('doctor')->load('symptoms')
         ]);
     }
 

@@ -21,6 +21,7 @@ class CreateAppointmentSymptom extends Migration
 
             $table->unsignedBigInteger('symptom_id');
             $table->foreign('symptom_id')->references('id')->on('symptoms');
+
             $table->timestamps();
         });
     }

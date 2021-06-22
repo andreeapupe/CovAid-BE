@@ -9,6 +9,8 @@ class Appointment extends Model
 {
     use HasFactory;
 
+    protected $guarded = [];
+
     /**
      * Get the user of this appointment
      */
@@ -28,11 +30,6 @@ class Appointment extends Model
      */
     public function symptoms()
     {
-        return $this->belongsToMany(Symptom::class, 'appointment_symptom', 'appointment_id', 'symptom_id');
+        return $this->belongsToMany(Symptom::class);
     }
-
-
-
-
-
 }

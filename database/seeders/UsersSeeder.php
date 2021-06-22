@@ -24,7 +24,7 @@ class UsersSeeder extends Seeder
         ]);
 
         $john = User::factory()->create([
-            'name' => 'Doctor 1',
+            'name' => 'John Doe',
             'email' => 'johndoe@gmail.com',
             'password' => bcrypt('secret'),
             'role_id' => Role::where('name', 'doctor')->first()->id

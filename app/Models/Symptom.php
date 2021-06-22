@@ -14,6 +14,6 @@ class Symptom extends Model
      */
     public function appointments()
     {
-        return $this->belongsToMany(Appointment::class, 'appointment_symptom', 'symptom_id', 'appointment_id');
+        return $this->belongsToMany(Appointment::class);
     }
 }

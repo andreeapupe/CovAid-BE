@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Appointment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -21,29 +22,41 @@ class UserOwnAppsController extends Controller
         $appointments = Auth::user()->patientAppointments()->get();
 
         return response()->json([
-            'appointments' => $appointments->load('patient')->load('doctor')
+            'appointments' => $appointments->load('patient')->load('doctor')->load('symptoms')
         ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
 
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'doctor_id' => ['required', 'integer', 'exists:users,id'],
+            'contact' => ['required', 'boolean'],
+            'details' => ['string'],
+            'symptoms' => ['required', 'array'],
+            'symptoms.*' => ['integer', 'exists:symptoms,id']
+        ]);
+
+        $appoinment = Appointment::create([
+            'patient_id' => Auth::user()->id,
+            'doctor_id' => $request->doctor_id,
+            'contact' => $request->contact,
+            'details' => $request->details
+        ]);
+
+        $appoinment->symptoms()->attach($request->symptoms);
+
+
+        return response()->json([
+            'message' => 'Appointment successfully created.',
+            'appointment' => $appoinment->refresh()->load('symptoms')->load('patient')->load('doctor')
+        ], 201);
     }
 
     /**

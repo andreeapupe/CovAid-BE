@@ -25,7 +25,7 @@ class CreateAppointments extends Migration
             $table->foreign('doctor_id')->references('id')->on('users');
 
             $table->boolean('contact');
-            $table->string('details');
+            $table->string('details')->nullable();
             $table->timestamps();
         });
     }

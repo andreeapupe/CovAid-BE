@@ -29,6 +29,8 @@ Route::middleware('auth:sanctum')->get('/doctors', [DoctorsController::class, 'i
 
 Route::middleware('auth:sanctum')->get('/patient/appointments', [UserOwnAppsController::class, 'index']);
 
+Route::middleware('auth:sanctum')->post('/patient/appointments', [UserOwnAppsController::class, 'store']);
+
 Route::middleware('auth:sanctum')->get('/doctor/appointments', [DoctorOwnAppsController::class, 'index']);
 
 Route::middleware('auth:sanctum')->get('/symptoms', [SymptomController::class, 'index']);
