@@ -10,7 +10,7 @@ class SymptomController extends Controller
 
 
     /**
-     * Display a listing of the resource.
+     * Display a listing of symptoms.
      *
      * @return \Illuminate\Http\JSONResponse
      */
